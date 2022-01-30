@@ -7,12 +7,11 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 // import layout template file
-// const generateTemplate = require('./src/layout-template');
-// // importing generate function
-// const generateHTML = require('./generate-html');
+const generateTemplate = require('./src/htmlTemplate');
+// importing generate function
+const generateHTML = require('./generateHTML');
 // create an array to hold our team members
 const teamMembers = [];
-
 // Prompt questions for user input
 const promptM = [
     {
@@ -95,13 +94,6 @@ const promptI = [
         validate: (value) => { if (value) {return true} else {return 'Cannot leave blank'}},
     },
 ];
-
-// function writeToFile(fileName, data) {
-//     fs.writeFile('log.txt', process.argv, (err) => 
-//         err ? console.error(err) : console.log('Success')
-//     )
-// };
-
 function addTeamMember() {
     inquirer.prompt(addToTeam)
         .then ((data) => { 
@@ -113,10 +105,13 @@ function addTeamMember() {
                 console.log('Add a new Intern');
                 addIntern();
             }
-            else console.log('Team is complete', teamMembers);
+            else {
+                console.log('Team Members:', teamMembers);
+                let formatHTML = generateTemplate(teamMembers);
+                generateHTML(formatHTML);
+            }
     });
 };
-
 function addEngineer() {
     inquirer.prompt(promptE)
         .then ((data) => {
@@ -126,7 +121,6 @@ function addEngineer() {
             addTeamMember();
         });
 };
-
 function addIntern() {
     inquirer.prompt(promptI)
         .then ((data) => {
@@ -136,7 +130,6 @@ function addIntern() {
             addTeamMember();
         });
 };
-
 function init() {
     inquirer.prompt(promptM)
         .then ((data) => {
@@ -146,5 +139,4 @@ function init() {
             addTeamMember()       
         });
 };
-
 init();
