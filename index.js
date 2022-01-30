@@ -105,8 +105,8 @@ function addTeamMember() {
             }
             else {
                 console.log('Team Members:', teamMembers);
-                let formatHTML = htmlTemplate(teamMembers);
-                createPage(formatHTML);
+                let teamHTML = htmlTemplate(teamMembers);
+                createPage(teamHTML);
             }
     });
 };
