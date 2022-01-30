@@ -7,9 +7,7 @@ const Manager = require('./lib/manager');
 const Engineer = require('./lib/engineer');
 const Intern = require('./lib/intern');
 // import layout template file
-const generateTemplate = require('./src/htmlTemplate');
-// importing generate function
-const generateHTML = require('./generateHTML');
+const htmlTemplate = require('./src/htmlTemplate');
 // create an array to hold our team members
 const teamMembers = [];
 // Prompt questions for user input
@@ -107,8 +105,8 @@ function addTeamMember() {
             }
             else {
                 console.log('Team Members:', teamMembers);
-                let formatHTML = generateTemplate(teamMembers);
-                generateHTML(formatHTML);
+                let formatHTML = htmlTemplate(teamMembers);
+                createPage(formatHTML);
             }
     });
 };
@@ -139,4 +137,21 @@ function init() {
             addTeamMember()       
         });
 };
+function createPage (html) {
+    fs.writeFile('./dist/index.html', html, error =>{
+        if(error){
+            throw error
+        }
+        console.log("index.html Page generated")
+        copyCSS()
+    })
+};
+const copyCSS = () =>{
+    fs.copyFile('./src/style.css', './dist/style.css', error => {
+        if (error){
+            throw error
+        }
+        console.log('style.css file copied')
+    });
+}
 init();

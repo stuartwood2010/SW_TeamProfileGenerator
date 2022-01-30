@@ -25,7 +25,7 @@ let generatehtml = (myTeam) => {
             <div class="card col" style="width: 18rem;">
             <div class="card-body card-header">
                 <h5 class="card-title">${name}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">${role}</h6>
+                <h6 class="card-subtitle mb-2">${role}</h6>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">Email: <a href=mailto:${email}>${email}</a></li>
@@ -35,7 +35,6 @@ let generatehtml = (myTeam) => {
             </div>
             `        
     }
-
     return `
     <!DOCTYPE html>
     <html lang="en">
