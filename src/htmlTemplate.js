@@ -12,7 +12,7 @@ let generatehtml = (myTeam) => {
         if (lastKey === undefined) {
             finalOption = "";
         } else if (lastKey === 'github'){
-            finalOption = (`Github: <a href = "https://github.com/${myTeam[i].github}"> ${myTeam[i].github}</a>`);
+            finalOption = (`Github: <a href = "https://github.com/${myTeam[i].github}" target="_blank"> ${myTeam[i].github}</a>`);
             console.log(finalOption);
         } else {
             console.log(finalOption);
